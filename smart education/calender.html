@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yearly Calendar with Notes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .calendar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .month {
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 10px;
+            width: 300px;
+            background-color: #f9f9f9;
+        }
+
+        .month h3 {
+            text-align: center;
+            margin: 0 0 10px;
+        }
+
+        .days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+
+        .day {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        .day:hover {
+            background-color: #f0f0f0;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Calendar 2024</h1>
+    <div id="calendar" class="calendar"></div>
+
+    <div class="notes">
+        <h2>Check Notes</h2>
+        <input type="text" id="year" placeholder="Year (e.g., 2024)" />
+        <input type="text" id="month" placeholder="Month (1-12)" />
+        <input type="text" id="day" placeholder="Day (1-31)" />
+    </div>
+
+    <script>
+        const notes = {};
+
+        function createCalendar(year) {
+            const calendarDiv = document.getElementById('calendar');
+            calendarDiv.innerHTML = '';
+
+            for (let month = 0; month < 12; month++) {
+                const monthDiv = document.createElement('div');
+                monthDiv.className = 'month';
+                const monthName = new Date(year, month).toLocaleString('default', { month: 'long' });
+                monthDiv.innerHTML = `<h3>${monthName}</h3>`;
+                
+                const daysDiv = document.createElement('div');
+                daysDiv.className = 'days';
+                const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const dayDiv = document.createElement('div');
+                    dayDiv.textContent = day;
+                    dayDiv.className = 'day';
+                    dayDiv.setAttribute('data-date', `${year}-${month + 1}-${day}`);
+                    dayDiv.onclick = () => viewNotes(year, month + 1, day);
+                    daysDiv.appendChild(dayDiv);
+                }
+
+                monthDiv.appendChild(daysDiv);
+                calendarDiv.appendChild(monthDiv);
+            }
+        }
+
+        function addNote() {
+            const year = document.getElementById('year').value;
+            const month = document.getElementById('month').value;
+            const day = document.getElementById('day').value;
+
+            if (!year || !month || !day) {
+                alert('Please fill out all fields.');
+                return;
+            }
+        }
+
+        function deleteNote() {
+            const year = document.getElementById('year').value;
+            const month = document.getElementById('month').value;
+            const day = document.getElementById('day').value;
+          
+            if (!year || !month || !day ) {
+                alert('Please fill out all fields.');
+                return;
+            }
+        }
+
+        function viewNotes(year, month, day) {
+            const dateKey = `${year}-${month}-${day}`;
+            const noteListDiv = document.getElementById('noteList');
+            noteListDiv.innerHTML = '';
+
+            if (notes[dateKey]) {
+                notes[dateKey].forEach(note => {
+                    const noteDiv = document.createElement('div');
+                    noteDiv.className = 'note';
+                    noteDiv.textContent = note;
+                    noteListDiv.appendChild(noteDiv);
+                });
+            } else {
+                noteListDiv.textContent = 'No notes for this date.';
+            }
+        }
+
+        // Create calendar for the current year on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentYear = new Date().getFullYear();
+            createCalendar(currentYear);
+        });
+    </script>
+</body>
+</html>

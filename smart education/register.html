@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Register</title>
+
+   <!-- Font Awesome CDN link -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+   <!-- Custom CSS file link -->
+   <style>
+     
+
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         font-family: 'Poppins', sans-serif;
+      }
+
+      body {
+         background-color: #f8f9fa;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         height: 100vh;
+         flex-direction: column;
+      }
+
+      .form-container {
+         width: 100%;
+         max-width: 500px;
+         background-color: #ffffff;
+         padding: 30px;
+         border-radius: 10px;
+         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-container h3 {
+         text-align: center;
+         margin-bottom: 20px;
+         font-size: 24px;
+         color: #333;
+      }
+
+      .form-container p {
+         font-size: 14px;
+         color: #333;
+         margin-bottom: 5px;
+      }
+
+      .form-container input,
+      .form-container select {
+         width: 100%;
+         padding: 10px;
+         margin-bottom: 20px;
+         border: 1px solid #ddd;
+         border-radius: 5px;
+      }
+
+      .form-container input:focus,
+      .form-container select:focus {
+         border-color: #ff5722;
+         outline: none;
+      }
+
+      .form-container .btn {
+         width: 100%;
+         padding: 10px;
+         background-color: #ff5722;
+         border: none;
+         color: #ffffff;
+         border-radius: 5px;
+         cursor: pointer;
+         font-size: 16px;
+         transition: background-color 0.3s;
+      }
+
+      .form-container .btn:hover {
+         background-color: #e64a19;
+      }
+
+      .footer {
+         text-align: center;
+         margin-top: 20px;
+         color: #777;
+      }
+
+      .footer span {
+         color: #ff5722;
+      }
+
+      .text-danger {
+         color: red;
+         font-size: 12px;
+      }
+   </style>
+     
+   
+</head>
+<body>
+
+<section class="form-container">
+
+   <form id="register-form" action="register.php" method="POST">
+      <h3>Register Now</h3>
+
+      <p>Your Name <span>*</span></p>
+      <input type="text" name="name" id="name" placeholder="Enter your name" required maxlength="50">
+      <small id="nameError" class="text-danger"></small>
+
+      <p>Roll no <span>*</span></p>
+      <input type="text" name="r_no" id="r_no" placeholder="Enter your roll no" required maxlength="50">
+      <small id="rollError" class="text-danger"></small>
+
+      <p>Your Email <span>*</span></p>
+      <input type="email" name="email" id="email" placeholder="Enter your email" required maxlength="50">
+      <small id="emailError" class="text-danger"></small>
+
+      <p>Your Password <span>*</span></p>
+      <input type="password" name="password" id="password" placeholder="Enter your password" required maxlength="20">
+      <small id="passwordError" class="text-danger"></small>
+
+      <p>Department <span>*</span></p>
+      <select name="department" id="department" required>
+         <option value="">--Select--</option>
+         <option value="IF">IF</option>
+         <option value="CO">CO</option>
+         <option value="EJ">EJ</option>
+      </select>
+      <small id="departmentError" class="text-danger"></small>
+
+      <p>Year <span>*</span></p>
+      <select name="year" id="year" required>
+         <option value="">--Select--</option>
+         <option value="FY">FY</option>
+         <option value="SY">SY</option>
+         <option value="TY">TY</option>
+      </select>
+      <small id="yearError" class="text-danger"></small>
+
+      <input type="submit" value="Register Now" class="btn">
+   </form>
+
+</section>
+
+<footer class="footer">
+   &copy; copyright @ 2022 by <span>Cyber Squad</span>
+</footer>
+
+<!-- Custom JS file link -->
+<script>
+   // Client-side validation
+   document.getElementById('register-form').addEventListener('submit', function(event) {
+      // JavaScript validation logic
+   });
+
+   function validateEmail(email) {
+      const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+      return re.test(String(email).toLowerCase());
+   }
+
+   function showError(id, message) {
+      document.getElementById(id).textContent = message;
+   }
+
+   function clearErrors() {
+      document.getElementById('nameError').textContent = '';
+      document.getElementById('rollError').textContent = '';
+      document.getElementById('emailError').textContent = '';
+      document.getElementById('passwordError').textContent = '';
+      document.getElementById('departmentError').textContent = '';
+      document.getElementById('yearError').textContent = '';
+   }
+</script>
+
+</body>
+</html>

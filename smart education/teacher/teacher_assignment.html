@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Assignment Submissions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .assignment-container {
+            background-color: #fff;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .assignment-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .assignment-header h1 {
+            font-size: 30px;
+            margin: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .status-pending {
+            color: #d9534f;
+            font-weight: bold;
+        }
+
+        .status-completed {
+            color: #5cb85c;
+            font-weight: bold;
+        }
+
+        .download-link {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .download-link:hover {
+            text-decoration: underline;
+        }
+
+        .back-button {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .back-button a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .back-button a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="assignment-container">
+        <div class="assignment-header">
+            <h1>Student Assignment Submissions</h1>
+            <p>Class: [IF3K-B]</p>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Roll no</th>
+                    <th>Student Name</th>
+                    <th>Assignment Title</th>
+                    <th>Status</th>
+                    <th>Submission Date</th>
+                    <th>Download/View</th>
+                </tr>
+            </thead>
+            <tbody id="assignmentTable">
+                <!-- Example Rows -->
+                <tr>
+                    <td>1</td>
+                    <td>Aditya Patil</td>
+                    <td>Math Assignment 1</td>
+                    <td class="status-completed">Completed</td>
+                    <td>September 14, 2024</td>
+                    <td><a href="#" class="download-link">Download</a></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Aarav Deshmukh</td>
+                    <td>Math Assignment 1</td>
+                    <td class="status-pending">Pending</td>
+                    <td>September 18, 2024</td>
+                    <td><a href="#" class="download-link">View</a></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Sneha Deshpande</td>
+                    <td>Science Assignment 1</td>
+                    <td class="status-completed">Completed</td>
+                    <td>September 14, 2024</td>
+                    <td><a href="#" class="download-link">Download</a></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Rohan Shinde</td>
+                    <td>Science Assignment 1</td>
+                    <td class="status-pending">Pending</td>
+                    <td>September 18, 2024</td>
+                    <td><a href="#" class="download-link">View</a></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Pooja Shinde</td>
+                    <td>History Assignment 1</td>
+                    <td class="status-completed">Completed</td>
+                    <td>September 14, 2024</td>
+                    <td><a href="#" class="download-link">Download</a></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Omkar Gaikwad</td>
+                    <td>History Assignment 1</td>
+                    <td class="status-pending">Pending</td>
+                    <td>September 18, 2024</td>
+                    <td><a href="#" class="download-link">View</a></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Ankita Chavan</td>
+                    <td>Geography Assignment 1</td>
+                    <td class="status-completed">Completed</td>
+                    <td>September 14, 2024</td>
+                    <td><a href="#" class="download-link">Download</a></td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Viraj Thakur</td>
+                    <td>Geography Assignment 1</td>
+                    <td class="status-pending">Pending</td>
+                    <td>September 18, 2024</td>
+                    <td><a href="#" class="download-link">View</a></td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Rahul Chavan</td>
+                    <td>Chemistry Assignment 1</td>
+                    <td class="status-completed">Completed</td>
+                    <td>September 14, 2024</td>
+                    <td><a href="#" class="download-link">Download</a></td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Pooja Patil</td>
+                    <td>Chemistry Assignment 1</td>
+                    <td class="status-pending">Pending</td>
+                    <td>September 18, 2024</td>
+                    <td><a href="#" class="download-link">View</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="back-button">
+            <a href="homepage.html">Back</a>
+        </div>
+    </div>
+
+</body>
+</html>

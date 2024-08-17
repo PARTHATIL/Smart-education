@@ -1,0 +1,227 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yearly Calendar with Notes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .calendar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .month {
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 10px;
+            width: 300px;
+            background-color: #f9f9f9;
+        }
+
+        .month h3 {
+            text-align: center;
+            margin: 0 0 10px;
+        }
+
+        .days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+
+        .day {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        .day:hover {
+            background-color: #f0f0f0;
+        }
+
+        .notes {
+            margin-top: 20px;
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: left;
+        }
+
+        .notes input {
+            margin-right: 10px;
+            padding: 5px;
+            width: calc(100% / 4 - 15px);
+            box-sizing: border-box;
+        }
+
+        .notes button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .note-list {
+            margin-top: 10px;
+        }
+
+        .note {
+            border: 1px solid #ddd;
+            padding: 5px;
+            margin: 5px 0;
+            background-color: #fff;
+        }
+
+        .back-button {
+            margin-top: 30px;
+        }
+
+        .back-button button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calendar 2024</h1>
+    <div id="calendar" class="calendar"></div>
+
+    <div class="notes">
+        <h2>Manage Notes</h2>
+        <input type="text" id="year" placeholder="Year (e.g., 2024)" />
+        <input type="text" id="month" placeholder="Month (1-12)" />
+        <input type="text" id="day" placeholder="Day (1-31)" />
+        <input type="text" id="note" placeholder="Type your note" />
+        <button onclick="addNote()">Add Note</button>
+        <button onclick="deleteNote()">Delete Note</button>
+        <div class="note-list" id="noteList"></div>
+    </div>
+
+    <div class="back-button">
+       <button> <a href="homepage.html">Back</a></button>
+    </div>
+
+    <script>
+        function addNote() {
+            const year = document.getElementById('year').value;
+            const month = document.getElementById('month').value;
+            const day = document.getElementById('day').value;
+            const note = document.getElementById('note').value;
+
+            if (!year || !month || !day || !note) {
+                alert('Please fill out all fields.');
+                return;
+            }
+
+            fetch('index.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `action=add&year=${year}&month=${month}&day=${day}&note=${encodeURIComponent(note)}`,
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Note added.');
+                    document.getElementById('note').value = '';
+                    viewNotes(year, month, day);
+                }
+            });
+        }
+
+        function deleteNote() {
+            const year = document.getElementById('year').value;
+            const month = document.getElementById('month').value;
+            const day = document.getElementById('day').value;
+            const note = document.getElementById('note').value;
+
+            if (!year || !month || !day || !note) {
+                alert('Please fill out all fields.');
+                return;
+            }
+
+            fetch('index.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `action=delete&year=${year}&month=${month}&day=${day}&note=${encodeURIComponent(note)}`,
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Note deleted.');
+                    viewNotes(year, month, day);
+                }
+            });
+        }
+
+        function viewNotes(year, month, day) {
+            fetch(`index.php?year=${year}&month=${month}&day=${day}`)
+            .then(response => response.json())
+            .then(notes => {
+                const noteListDiv = document.getElementById('noteList');
+                noteListDiv.innerHTML = '';
+
+                if (notes.length > 0) {
+                    notes.forEach(note => {
+                        const noteDiv = document.createElement('div');
+                        noteDiv.className = 'note';
+                        noteDiv.textContent = note;
+                        noteListDiv.appendChild(noteDiv);
+                    });
+                } else {
+                    noteListDiv.textContent = 'No notes for this date.';
+                }
+            });
+        }
+
+        // Create calendar for the current year on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentYear = new Date().getFullYear();
+            createCalendar(currentYear);
+        });
+
+        function createCalendar(year) {
+            const calendarDiv = document.getElementById('calendar');
+            calendarDiv.innerHTML = '';
+
+            for (let month = 0; month < 12; month++) {
+                const monthDiv = document.createElement('div');
+                monthDiv.className = 'month';
+                const monthName = new Date(year, month).toLocaleString('default', { month: 'long' });
+                monthDiv.innerHTML = `<h3>${monthName}</h3>`;
+                
+                const daysDiv = document.createElement('div');
+                daysDiv.className = 'days';
+                const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const dayDiv = document.createElement('div');
+                    dayDiv.textContent = day;
+                    dayDiv.className = 'day';
+                    dayDiv.setAttribute('data-date', `${year}-${month + 1}-${day}`);
+                    dayDiv.onclick = () => viewNotes(year, month + 1, day);
+                    daysDiv.appendChild(dayDiv);
+                }
+
+                monthDiv.appendChild(daysDiv);
+                calendarDiv.appendChild(monthDiv);
+            }
+        }
+    </script>
+</body>
+</html>

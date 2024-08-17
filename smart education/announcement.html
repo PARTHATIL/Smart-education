@@ -1,0 +1,163 @@
+
+<?php
+// Example PHP code for fetching user profile data
+$user = [
+    'name' => 'John Doe',
+    'profile_image' => 'profile.png' // Path to the profile image
+];
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link
+  rel="icon"
+  href="edu.png"
+  type="image/x-icon"
+/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Education</title>
+    <style>
+      body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Header Styling */
+.header {
+    display: flex;
+    align-items: center;
+    background-color: #4CAF50;
+    padding: 10px;
+    color: white;
+}
+
+.profile img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.title {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.title h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+/* Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: center;
+    background-color: #333;
+}
+
+.navbar a {
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Main Content Styling */
+.main-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+.announcement-container {
+            background-color: #ffcc00;
+            color: #000;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            border: 2px solid #000;
+            max-width: 600px;
+            margin: 20px auto;
+            border-radius: 8px;
+        }
+.announcement-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+.announcement-message {
+            font-size: 18px;
+            text-align: center;
+        }
+
+
+    </style>
+</head>
+<body>
+    <!-- Header with Profile Image and Title -->
+    <div class="header">
+        <div class="profile">
+            <img src="<?php echo $user['profile_image']; ?>" alt="Profile Image">
+        </div>
+        <div class="title">
+            <h1>Smart Education</h1>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="assignment.php">Assignment</a>
+        <a href="announcement.html">Announcement</a>
+        <a href="calender.html">Calender</a>
+        <a href="#contact">Contact</a>
+        <a href="#settings">Settings</a>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <a href="#" class="btn">Dashboard</a>
+        <a href="#" class="btn">Courses</a>
+        <a href="#" class="btn">Settings</a>
+    </div>
+    <div class="announcement-container">
+        <div class="announcement-title"><a href="">📢 Announcement</a></div>
+        <div class="announcement-message">We have an important update! Check out our latest news here.</div>
+    </div>
+    <div class="announcement-details">
+      <div class="announcement-date">Date: August 16, 2024</div>
+      <p>This is the detailed announcement content. Here you can provide more information or updates related to the announcement. Make sure to include all relevant details so that users have a clear understanding of the update.</p>
+    </div>
+
+    <script >function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+      }
+    
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("main").style.marginLeft = "-250px";
+        setTimeout(() => {
+          document.getElementById("main").style.marginLeft = "0";
+        }, 500); // Reset margin after the transition
+      }</script>
+</body>
+</html>
+ 

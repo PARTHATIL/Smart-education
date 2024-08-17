@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Announcement Banner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .announcement-container {
+            background-color: #ffcc00;
+            color: #000;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            border: 2px solid #000;
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .announcement-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .announcement-message {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .announcement-details {
+            background-color: #fff;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            font-size: 16px;
+        }
+        .announcement-date {
+            font-size: 14px;
+            color: #555;
+            text-align: right;
+            margin-bottom: 10px;
+        }
+        .announcement-form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+        .announcement-form input,
+        .announcement-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .announcement-form button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #ffcc00;
+            color: #000;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .back-button {
+            display: block;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+        }
+        .back-button a {
+            text-decoration: none;
+            color: #000;
+            background-color: #ffcc00;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="announcement-container">
+        <div class="announcement-title" id="announcementTitleDisplay">📢 Announcement</div>
+        <div class="announcement-message" id="announcementMessageDisplay"></div>
+        <div class="announcement-author" id="announcementAuthorDisplay"></div>
+        <div class="announcement-date" id="announcementDateDisplay"></div>
+    </div>
+
+    <div class="announcement-form">
+        <h2>Write an Announcement</h2>
+        <input type="text" id="announcementTitle" placeholder="Title" />
+        <textarea id="announcementMessageInput" rows="4" placeholder="Message"></textarea>
+        <input type="text" id="announcementAuthorInput" placeholder="Author" />
+        <input type="date" id="announcementDateInput" />
+        <button onclick="updateAnnouncement()">Submit</button>
+    </div>
+
+    <div class="back-button">
+        <a href="homepage.html">Back</a>
+    </div>
+
+    <script>
+        function updateAnnouncement() {
+            const title = document.getElementById('announcementTitle').value;
+            const message = document.getElementById('announcementMessageInput').value;
+            const author = document.getElementById('announcementAuthorInput').value;
+            const date = new Date(document.getElementById('announcementDateInput').value).toLocaleDateString();
+
+            if (!title || !message || !author || !date) {
+                alert('Please fill out all fields.');
+                return;
+            }
+
+            document.getElementById('announcementTitleDisplay').innerText = title;
+            document.getElementById('announcementMessageDisplay').innerText = message;
+            document.getElementById('announcementAuthorDisplay').innerText = `Author: ${author}`;
+            document.getElementById('announcementDateDisplay').innerText = `Date: ${date}`;
+
+            // Clear the form
+            document.getElementById('announcementTitle').value = '';
+            document.getElementById('announcementMessageInput').value = '';
+            document.getElementById('announcementAuthorInput').value = '';
+            document.getElementById('announcementDateInput').value = '';
+        }
+    </script>
+
+</body>
+</html>

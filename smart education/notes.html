@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Notes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .btn-submit {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .btn-submit:hover {
+            background-color: #0056b3;
+        }
+
+        .back-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-button button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #6c757d;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .back-button button a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .back-button button:hover {
+            background-color: #5a6268;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+
+            .form-control {
+                font-size: 14px;
+            }
+
+            .btn-submit,
+            .back-button button {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Send Notes</h2>
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="title">Note Title:</label>
+                <input type="text" id="title" name="title" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Note Content:</label>
+                <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="to_whom">Send To:</label>
+                <select id="to_whom" name="to_whom" class="form-control">
+                    <option value="all">All Students</option>
+                    <option value="fy">First Year</option>
+                    <option value="sy">Second Year</option>
+                    <option value="ty">Third Year</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="file">Upload File:</label>
+                <input type="file" id="file" name="file" class="form-control">
+            </div>
+            <button type="submit" class="btn-submit">Send</button>
+        </form>
+
+        <div class="back-button">
+            <button onclick="location.href='homepage.html'">Back</button>
+        </div>
+    </div>
+</body>
+</html>

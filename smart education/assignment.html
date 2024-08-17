@@ -1,0 +1,123 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Education</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            background-color: #4CAF50;
+            padding: 10px;
+            color: white;
+        }
+        .profile img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+        }
+        .title {
+            flex-grow: 1;
+            text-align: center;
+        }
+        .title h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: #4CAF50;
+            padding: 10px 0;
+        }
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .navbar ul li {
+            margin: 0 20px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .navbar ul li:hover {
+            text-decoration: underline;
+        }
+        .container {
+            padding: 20px;
+            text-align: center;
+        }
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 20px 0;
+            padding: 15px;
+            text-align: left;
+        }
+        .card h5 {
+            margin-top: 0;
+        }
+        .file-label {
+            display: block;
+            margin-top: 10px;
+            cursor: pointer;
+            color: #4CAF50;
+            text-decoration: underline;
+        }
+        #file-upload {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Profile Image and Title -->
+    <div class="header">
+        <div class="profile">
+            <img src="profile.png" alt="Profile Image">
+        </div>
+        <div class="title">
+            <h1>Smart Education</h1>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <ul>
+            <li>Upcoming</li>
+            <li>Past Due</li>
+            <li>Completed</li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="card">
+            <h5 class="card-title">Notice Title 1</h5>
+            <div class="form-group">
+                <!-- Text element to trigger file input -->
+                <label for="file-upload" class="file-label">Click here to attach a file:</label>
+                <!-- Hidden file input -->
+                <input type="file" id="file-upload" name="file-upload" class="form-control" accept=".xlsx, .xls, .doc, .docx, .pdf" />
+            </div>
+        </div>
+        <div class="card">
+            <h5 class="card-title">Notice Title 2</h5>
+            <div class="form-group">
+                <label for="file-upload" class="file-label">Click here to attach a file:</label>
+                <input type="file" id="file-upload" name="file-upload" class="form-control" accept=".xlsx, .xls, .doc, .docx, .pdf" />
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Education</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            background-color: #4CAF50;
+            padding: 10px;
+            color: white;
+        }
+
+        .profile img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+        }
+
+        .title {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .title h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+
+        .navbar a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .main-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 500px;
+            margin: auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .form-container h3 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .form-container p {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .form-container input,
+        .form-container select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-container input:focus,
+        .form-container select:focus {
+            border-color: #ff5722;
+            outline: none;
+        }
+
+        .form-container .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #ff5722;
+            border: none;
+            color: #ffffff;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .form-container .btn:hover {
+            background-color: #e64a19;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #777;
+        }
+
+        .footer span {
+            color: #ff5722;
+        }
+
+        .text-danger {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <div class="form-container">
+            <h3>Login</h3>
+            <form id="login-form">
+                <p>Your Email <span>*</span></p>
+                <input type="email" name="email" id="email" placeholder="Enter your email" required>
+
+                <p>Your Password <span>*</span></p>
+                <input type="password" name="password" id="password" placeholder="Enter your password" required>
+
+                <p>Select your role:</p>
+                <label>
+                    <input type="radio" name="role" value="student" checked> Student
+                </label>
+                <label>
+                    <input type="radio" name="role" value="teacher"> Teacher
+                </label>
+
+                <button type="submit" class="btn">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        &copy; copyright @ 2024 by <span>Smart Education</span>
+    </footer>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const role = document.querySelector('input[name="role"]:checked').value;
+            if (role === 'student') {
+                window.location.href = 'student_login.html'; // Redirect to student login page
+            } else if (role === 'teacher') {
+                window.location.href = 'teacher_login.html'; // Redirect to teacher login page
+            }
+        });
+    </script>
+</body>
+</html>

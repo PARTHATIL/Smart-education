@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .attendance-container {
+            width: 100%;
+            max-width: 800px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 60px;
+        }
+
+        .attendance-header {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .summary {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .buttons button, .buttons a {
+            padding: 10px 20px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 4px;
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            text-decoration: none;
+            color: #007bff;
+            cursor: pointer;
+        }
+
+        .buttons button:hover, .buttons a:hover {
+            background-color: #e9ecef;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="attendance-container">
+        <div class="attendance-header">Class Attendance</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Roll No</th>
+                    <th>Student Name</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="attendanceTable">
+                <!-- Rows for students will be generated here -->
+            </tbody>
+        </table>
+        <div class="buttons">
+            <button onclick="calculateSummary()">Calculate Summary</button>
+            <button onclick="saveToFile()">Save to File</button>
+            <a href="homepage.html">Back</a>
+        </div>
+        <div id="summary" class="summary"></div>
+    </div>
+
+    <script>
+        const studentNames = [
+            // Boys' Names
+            'Aditya Patil', 'Aarav Deshmukh', 'Sahil Joshi', 'Omkar Kulkarni', 'Rohan Shinde',
+            'Siddharth Pawar', 'Viraj Gaikwad', 'Yash Thakur', 'Shubham Naik', 'Mihir Jadhav',
+            'Tejas Bhosale', 'Pranav Rane', 'Ritesh More', 'Nikhil Salunkhe', 'Amey Wagh',
+
+            // Girls' Names
+            'Sneha Deshpande', 'Pooja Chavan', 'Ankita Shinde', 'Mrunal Pawar', 'Prajakta Phadke',
+            'Swara Inamdar', 'Aishwarya Deshmukh', 'Rutuja Patil', 'Tanvi Joshi', 'Riya Gadgil',
+            'Asmita Kulkarni', 'Sonali Patil', 'Neha Ghadge', 'Sayali Sawant', 'Pallavi Kshirsagar'
+        ];
+
+        const attendanceTable = document.getElementById('attendanceTable');
+
+        // Function to generate the attendance table rows
+        function generateTable() {
+            studentNames.forEach((name, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${name}</td>
+                    <td>
+                        <select>
+                            <option value="Present">Present</option>
+                            <option value="Absent">Absent</option>
+                        </select>
+                    </td>
+                `;
+                attendanceTable.appendChild(row);
+            });
+        }
+
+        // Function to calculate and display the attendance summary
+        function calculateSummary() {
+            let presentCount = 0;
+            let absentCount = 0;
+
+            const rows = attendanceTable.getElementsByTagName('tr');
+            for (let i = 0; i < rows.length; i++) {
+                const selectElement = rows[i].getElementsByTagName('select')[0];
+                const status = selectElement.value;
+
+                if (status === 'Present') {
+                    presentCount++;
+                } else if (status === 'Absent') {
+                    absentCount++;
+                }
+            }
+
+            const summaryDiv = document.getElementById('summary');
+            summaryDiv.innerHTML = `
+                Total Students: ${studentNames.length}<br>
+                Present: ${presentCount}<br>
+                Absent: ${absentCount}
+            `;
+        }
+
+        // Function to save the attendance data to a file
+        function saveToFile() {
+            let csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += "No,Student Name,Status\n";
+
+            const rows = attendanceTable.getElementsByTagName('tr');
+            for (let i = 0; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                const number = cells[0].textContent;
+                const name = cells[1].textContent;
+                const status = cells[2].getElementsByTagName('select')[0].value;
+                csvContent += `${number},${name},${status}\n`;
+            }
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement('a');
+            link.setAttribute('href', encodedUri);
+            link.setAttribute('download', 'attendance.csv');
+            document.body.appendChild(link); // Required for Firefox
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Initialize the table on page load
+        window.onload = generateTable;
+    </script>
+
+</body>
+</html>

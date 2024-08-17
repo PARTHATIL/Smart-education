@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../Documents/kaiadmin-lite-1.0.0[1]/kaiadmin-lite-1.0.0/kaiadmin-lite-1.0.0/assets/js"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "smart education",
+		"liveServer.settings.port": 5501
+	}
+}
